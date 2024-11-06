@@ -11,16 +11,9 @@
     <h2>تتبع المسلسلات والأفلام</h2>
 
     <!-- خيارات الرمز -->
-    <label>هل لديك رمز؟</label>
-    <button onclick="showCodeInput()">لدي رمز</button>
-    <button onclick="generateCode()">ليس لدي رمز</button>
-
-    <!-- إدخال الرمز -->
-    <div id="codeSection" style="display: none;">
-      <label for="code">أدخل الرمز:</label>
-      <input type="text" id="code" placeholder="أدخل الرمز">
-      <button onclick="checkCode()">تأكيد الرمز</button>
-    </div>
+    <label>أدخل رمزًا رقميًا خاصًا بك:</label>
+    <input type="number" id="code" placeholder="أدخل رمزًا رقميًا" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+    <button onclick="checkCode()">تأكيد الرمز</button>
 
     <!-- نموذج إضافة التفاصيل -->
     <div id="trackingForm" style="display: none;">
@@ -45,6 +38,7 @@
       <input type="text" id="time" placeholder="ساعات:دقائق:ثواني (مثال 0:12:12)">
       
       <button onclick="saveData()">حفظ البيانات</button>
+      <button onclick="deleteData()" class="delete-button">حذف البيانات</button>
     </div>
 
     <!-- عرض البيانات المخزنة -->
