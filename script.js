@@ -2,36 +2,20 @@ const trackingForm = document.getElementById("trackingForm");
 const infoDisplay = document.getElementById("infoDisplay");
 const codeSection = document.getElementById("codeSection");
 
-function showCodeInput() {
-  codeSection.style.display = "block";
-  trackingForm.style.display = "none";
-  infoDisplay.style.display = "none";
-}
-
-// إنشاء رمز جديد عشوائي
-function generateCode() {
-  const newCode = Math.random().toString(36).substring(2, 10);
-  alert(`تم إنشاء الرمز الخاص بك: ${newCode}`);
-  localStorage.setItem(newCode, JSON.stringify([]));
-  document.getElementById("code").value = newCode;
-  codeSection.style.display = "none";
-  trackingForm.style.display = "block";
-}
-
-// فحص الرمز وعرض البيانات المخزنة إذا كانت موجودة
 function checkCode() {
   const code = document.getElementById("code").value;
   if (!code) {
-    alert("يرجى إدخال الرمز");
+    alert("يرجى إدخال رمز رقمي");
     return;
   }
-
-  const storedData = localStorage.getItem(code);
-  if (storedData) {
-    displayData(JSON.parse(storedData));
-    trackingForm.style.display = "block";
+  
+  // تأكد أن الرمز لم يتم استخدامه من قبل
+  if (localStorage.getItem(code)) {
+    alert("الرمز مستخدم من قبل. يرجى اختيار رمز آخر.");
   } else {
-    alert("الرمز غير موجود. يرجى إنشاء رمز جديد.");
+    localStorage.setItem(code, JSON.stringify([]));
+    alert(`تم حفظ الرمز: ${code}`);
+    trackingForm.style.display = "block";
   }
 }
 
@@ -70,13 +54,12 @@ function saveData() {
 function displayData(allData) {
   infoDisplay.style.display = "block";
   
-  // تأكد من أن allData هو مصفوفة
   if (!Array.isArray(allData)) {
     allData = [];
   }
 
   let output = `<h3>بيانات المتابعة</h3>`;
-  allData.forEach((data, index) => {
+  allData.forEach((data) => {
     output += `<div class="info-entry">`;
     output += `<p><strong>الاسم:</strong> ${data.title}</p>`;
     if (data.type === "series") {
@@ -87,4 +70,15 @@ function displayData(allData) {
     output += "</div>";
   });
   infoDisplay.innerHTML = output;
+}
+
+// حذف جميع البيانات
+function deleteData() {
+  const code = document.getElementById("code").value;
+  if (confirm("هل أنت متأكد من حذف جميع البيانات؟")) {
+    localStorage.removeItem(code);
+    alert("تم حذف البيانات بنجاح.");
+    trackingForm.style.display = "none";
+    infoDisplay.style.display = "none";
+  }
 }
