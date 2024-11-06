@@ -5,7 +5,7 @@
   font-family: Arial, sans-serif;
 }
 body {
-  background-color: #f0f4f8;
+  background-color: #e0f7fa;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,15 +14,16 @@ body {
 .container {
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 500px;
   text-align: center;
   direction: rtl;
+  color: #00796b;
 }
 h2 {
-  color: #333;
+  color: #004d40;
   margin-bottom: 20px;
 }
 label, input, select, button {
@@ -32,20 +33,27 @@ label, input, select, button {
 }
 input, select {
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #ddd;
 }
 button {
-  background-color: #007bff;
+  background-color: #00796b;
   color: #fff;
   border: none;
   padding: 12px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 button:hover {
-  background-color: #0056b3;
+  background-color: #004d40;
+}
+.delete-button {
+  background-color: #d32f2f;
+  margin-top: 10px;
+}
+.delete-button:hover {
+  background-color: #b71c1c;
 }
 .info {
   margin-top: 20px;
@@ -55,10 +63,11 @@ button:hover {
   display: none;
 }
 .info-entry {
-  background-color: #f9f9f9;
+  background-color: #e0f2f1;
   padding: 10px;
   margin-top: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
+  color: #004d40;
 }
 .info-entry p {
   margin: 5px 0;
